@@ -1,0 +1,11 @@
+{% extends 'appointments/base.html' %}
+
+{% block content %}
+<h2>Список тренировок</h2>
+<ul>
+    {% for session in sessions %}
+        <li>{{ session.title }} - {{ session.date }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'appointments:create_training_session' %}">Добавить тренировку</a>
+{% endblock %}

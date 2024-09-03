@@ -1,0 +1,11 @@
+{{% extends 'appointments/base.html' %}
+
+{% block content %}
+    <h2>Список записей на тренировки</h2>
+    <ul>
+        {% for appointment in appointments %}
+            <li>{{ appointment.client }} записан на {{ appointment.session }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'appointments:create_appointment' %}">Добавить запись</a> <!-- Обратите внимание на пространство имён -->
+{% endblock %}
