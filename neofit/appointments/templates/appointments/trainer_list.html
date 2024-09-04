@@ -1,10 +1,14 @@
 {% extends 'appointments/base.html' %}
 
 {% block content %}
-<h2>Добавить тренера</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Сохранить</button>
-</form>
+<h2>Список тренеров</h2>
+
+<ul>
+    {% for trainer in trainers %}
+        <li>{{ trainer.name }} - {{ trainer.specialty }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'appointments:create_trainer' %}" class="btn btn-primary">Добавить нового тренера</a>
+
 {% endblock %}

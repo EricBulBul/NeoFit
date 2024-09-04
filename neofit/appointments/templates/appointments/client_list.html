@@ -1,10 +1,11 @@
 {% extends 'appointments/base.html' %}
 
 {% block content %}
-    <h2>Добавить клиента</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Сохранить</button>
-    </form>
+    <h2>Список клиентов</h2>
+    <ul>
+        {% for client in clients %}
+            <li>{{ client.last_name }} {{ client.first_name }} - {{ client.email }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'appointments:create_client' %}">Добавить клиента</a>
 {% endblock %}

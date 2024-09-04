@@ -1,0 +1,65 @@
+{% extends 'appointments/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h2>Добавить клиента</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <!-- Поле для фамилии -->
+    <div class="form-group">
+        {{ form.last_name.label_tag }}
+        {{ form.last_name|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для имени -->
+    <div class="form-group">
+        {{ form.first_name.label_tag }}
+        {{ form.first_name|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для отчества -->
+    <div class="form-group">
+        {{ form.middle_name.label_tag }}
+        {{ form.middle_name|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для email -->
+    <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для номера телефона -->
+    <div class="form-group">
+        {{ form.phone_number.label_tag }}
+        {{ form.phone_number|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для даты рождения -->
+    <div class="form-group">
+        {{ form.birthdate.label_tag }}
+        {{ form.birthdate|add_class:"form-control datepicker" }}  <!-- Класс datepicker для применения маски -->
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добавить клиента</button>
+</form>
+
+<!-- Обработка ошибок -->
+{% if form.errors %}
+    <div class="form-errors">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ field.label }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% endblock %}

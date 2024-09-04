@@ -5,13 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeoFit</title>
+    <!-- Подключение CSS (например, Bootstrap) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Пример базовых стилей для улучшения внешнего вида */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+        header h1 {
+            margin: 0;
+            padding-left: 20px;
+        }
+        nav {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .active {
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>NeoFit</h1>
         <nav>
-            <!-- Проверьте правильность имен маршрутов здесь -->
-            <a href="{% url 'main:home' %}">Главная странница</a>
+            <a href="{% url 'main:home' %}">Главная страница</a>
             <a href="{% url 'appointments:client_list' %}">Клиенты</a>
             <a href="{% url 'appointments:trainer_list' %}">Тренеры</a>
             <a href="{% url 'appointments:training_session_list' %}">Тренировки</a>
@@ -21,6 +55,26 @@
         {% block content %}
         {% endblock %}
     </main>
+
+    <!-- Подключение jQuery и Inputmask -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/inputmask.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            // Применение маски для поля даты с автоматическими разделителями
+            $('.datepicker').inputmask('datetime', {
+                alias: 'datetime',
+                inputFormat: 'dd/mm/yyyy',  // Формат даты
+                placeholder: 'дд/мм/гггг',  // Плейсхолдер с примером
+                clearIncomplete: true  // Очищает поле, если ввод не завершен
+            });
+
+            // Применение маски для поля времени, если нужно
+            $('.timepicker').inputmask('99:99');  // Пример: 14:30
+        });
+    </script>
 </body>
 </html>
+
 

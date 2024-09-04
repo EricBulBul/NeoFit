@@ -25,7 +25,7 @@ def create_client(request):
         form = ClientForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('client_list')  # Обновлено
+            return redirect('appointments:client_list')  # Обновлено
     else:
         form = ClientForm()
     return render(request, 'appointments/create_client.html', {'form': form})
@@ -40,7 +40,7 @@ def create_trainer(request):
         form = TrainerForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('trainer_list')
+            return redirect('appointments:trainer_list')  # Перенаправление на список тренеров после успешного сохранения
     else:
         form = TrainerForm()
     return render(request, 'appointments/create_trainer.html', {'form': form})
