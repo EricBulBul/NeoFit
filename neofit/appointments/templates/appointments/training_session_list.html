@@ -7,5 +7,5 @@
         <li>{{ session.title }} - {{ session.date }}</li>
     {% endfor %}
 </ul>
-<a href="{% url 'appointments:create_training_session' %}">Добавить тренировку</a>
+<a href="{% url 'appointments:create_training_session' %}" class="btn btn-primary">Добавить тренировку</a>
 {% endblock %}
