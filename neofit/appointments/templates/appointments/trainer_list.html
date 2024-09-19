@@ -1,14 +1,47 @@
 {% extends 'appointments/base.html' %}
-
 {% block content %}
 <h2>Список тренеров</h2>
 
 <ul>
     {% for trainer in trainers %}
-        <li>{{ trainer.name }} - {{ trainer.specialty }}</li>
+        <li>
+            <div>
+                <!-- Клик по имени тренера для раскрытия описания -->
+                <strong onclick="toggleDescription({{ forloop.counter0 }})" style="cursor: pointer;">
+                    {{ trainer.first_name }} {{ trainer.last_name }} - {{ trainer.specialty }}
+                </strong>
+
+                <!-- Описание тренера, по умолчанию скрыто -->
+                <div id="description-{{ forloop.counter0 }}" style="display: none;">
+                    <p>Дата рождения: {{ trainer.birthdate }}</p>
+                    <p>Email: {{ trainer.email }}</p>
+                    <p>Телефон: {{ trainer.phone_number }}</p>
+                    <p>Описание: {{ trainer.specialty }}</p>
+
+                    <!-- Фото тренера, если оно загружено -->
+                    {% if trainer.photo %}
+                        <img src="{{ trainer.photo.url }}" alt="Фото {{ trainer.first_name }}" style="max-width: 200px;">
+                    {% else %}
+                        <p>Фото не загружено</p>
+                    {% endif %}
+                </div>
+            </div>
+        </li>
     {% endfor %}
 </ul>
 
 <a href="{% url 'appointments:create_trainer' %}" class="btn btn-primary">Добавить нового тренера</a>
+
+<script>
+    // Функция для скрытия/показа описания
+    function toggleDescription(id) {
+        var description = document.getElementById('description-' + id);
+        if (description.style.display === 'none') {
+            description.style.display = 'block';
+        } else {
+            description.style.display = 'none';
+        }
+    }
+</script>
 
 {% endblock %}

@@ -2,115 +2,65 @@
 {% load widget_tweaks %}
 
 {% block content %}
-    <h2>Добавить тренера</h2>
-    <form method="post">
-        {% csrf_token %}
+<h2>Добавить тренера</h2>
+<form method="post" enctype="multipart/form-data">  <!-- Не забудьте enctype -->
+    {% csrf_token %}
 
-        <!-- Поле для фамилии -->
-        <div class="form-group">
-            {{ form.last_name.label_tag }}
-            {{ form.last_name|add_class:"form-control" }}
-            {% if form.last_name.errors %}
-                <div class="invalid-feedback">
-                    {% for error in form.last_name.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+    <!-- Поле для фамилии -->
+    <div class="form-group">
+        {{ form.last_name.label_tag }}
+        {{ form.last_name|add_class:"form-control" }}
+    </div>
 
-        <!-- Поле для имени -->
-        <div class="form-group">
-            {{ form.first_name.label_tag }}
-            {{ form.first_name|add_class:"form-control" }}
-            {% if form.first_name.errors %}
-                <div class="invalid-feedback">
-                    {% for error in form.first_name.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+    <!-- Поле для имени -->
+    <div class="form-group">
+        {{ form.first_name.label_tag }}
+        {{ form.first_name|add_class:"form-control" }}
+    </div>
 
-        <!-- Поле для отчества -->
-        <div class="form-group">
-            {{ form.middle_name.label_tag }}
-            {{ form.middle_name|add_class:"form-control" }}
-            {% if form.middle_name.errors %}
-                <div class="invalid-feedback">
-                    {% for error in form.middle_name.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+    <!-- Поле для отчества -->
+    <div class="form-group">
+        {{ form.middle_name.label_tag }}
+        {{ form.middle_name|add_class:"form-control" }}
+    </div>
 
-        <!-- Поле для email -->
-        <div class="form-group">
-            {{ form.email.label_tag }}
-            {{ form.email|add_class:"form-control" }}
-            {% if form.email.errors %}
-                <div class="invalid-feedback">
-                    {% for error in form.email.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+    <!-- Поле для email -->
+    <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email|add_class:"form-control" }}
+    </div>
 
-        <!-- Поле для номера телефона -->
-        <div class="form-group">
-            {{ form.phone_number.label_tag }}
-            {{ form.phone_number|add_class:"form-control" }}
-            {% if form.phone_number.errors %}
-                <div class="invalid-feedback">
-                    {% for error in form.phone_number.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+    <!-- Поле для номера телефона -->
+    <div class="form-group">
+        {{ form.phone_number.label_tag }}
+        {{ form.phone_number|add_class:"form-control" }}
+    </div>
 
-        <!-- Поле для даты рождения -->
-        <div class="form-group">
-            {{ form.birthdate.label_tag }}
-            {{ form.birthdate|add_class:"form-control" }}
-            {% if form.birthdate.errors %}
-                <div class="invalid-feedback">
-                    {% for error in form.birthdate.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+    <!-- Поле для даты рождения -->
+    <div class="form-group">
+        {{ form.birthdate.label_tag }}
+        {{ form.birthdate|add_class:"form-control" }}
+    </div>
 
-        <!-- Поле для специальности -->
-        <div class="form-group">
-            {{ form.specialty.label_tag }}
-            {{ form.specialty|add_class:"form-control" }}
-            {% if form.specialty.errors %}
-                <div class="invalid-feedback">
-                    {% for error in form.specialty.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+    <!-- Поле для специальности -->
+    <div class="form-group">
+        {{ form.specialty.label_tag }}
+        {{ form.specialty|add_class:"form-control" }}
+    </div>
 
-        <!-- Поле для пола -->
-        <div class="form-group">
-            {{ form.gender.label_tag }}
-            {{ form.gender|add_class:"form-control" }}
-            {% if form.gender.errors %}
-                <div class="invalid-feedback">
-                    {% for error in form.gender.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+    <!-- Поле для пола -->
+    <div class="form-group">
+        {{ form.gender.label_tag }}
+        {{ form.gender|add_class:"form-control" }}
+    </div>
 
-        <button type="submit" class="btn btn-primary">Добавить тренера</button>
-    </form>
+    <!-- Поле для фото -->
+    <div class="form-group">
+        {{ form.photo.label_tag }}
+        {{ form.photo|add_class:"form-control" }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добавить тренера</button>
+</form>
 {% endblock %}
 

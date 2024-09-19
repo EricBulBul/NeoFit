@@ -37,10 +37,10 @@ def trainer_list(request):
 
 def create_trainer(request):
     if request.method == 'POST':
-        form = TrainerForm(request.POST)
+        form = TrainerForm(request.POST, request.FILES)  # Добавьте request.FILES
         if form.is_valid():
             form.save()
-            return redirect('appointments:trainer_list')  # Перенаправление на список тренеров после успешного сохранения
+            return redirect('appointments:trainer_list')  # Перенаправление на список тренеров
     else:
         form = TrainerForm()
     return render(request, 'appointments/create_trainer.html', {'form': form})

@@ -21,16 +21,17 @@ class ClientForm(forms.ModelForm):
 class TrainerForm(forms.ModelForm):
     class Meta:
         model = Trainer
-        fields = ['last_name', 'first_name', 'middle_name', 'email', 'phone_number', 'birthdate', 'specialty', 'gender']
+        fields = ['last_name', 'first_name', 'middle_name', 'email', 'phone_number', 'birthdate', 'specialty', 'gender', 'photo']
         widgets = {
-            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Фамилия'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя'}),
-            'middle_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество (если есть)'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
-            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер телефона'}),
-            'birthdate': forms.DateInput(attrs={'class': 'form-control datepicker', 'placeholder': 'Дата рождения', 'type': 'date'}),
-            'specialty': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Специальность'}),
-            'gender': forms.Select(choices=[('M', 'Мужской'), ('F', 'Женский')], attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'middle_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'birthdate': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'specialty': forms.TextInput(attrs={'class': 'form-control'}),
+            'gender': forms.Select(attrs={'class': 'form-control'}),
+            'photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
 class TrainingSessionForm(forms.ModelForm):
