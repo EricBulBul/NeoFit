@@ -1,11 +1,22 @@
 {% extends 'appointments/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
-<h2>Список тренировок</h2>
-<ul>
-    {% for session in sessions %}
-        <li>{{ session.title }} - {{ session.date }}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'appointments:create_training_session' %}" class="btn btn-primary">Добавить тренировку</a>
+    <h2>Список тренировок</h2>
+
+    <ul class="list-group">
+        {% for session in sessions %}
+            <li class="list-group-item">
+                <h4>{{ session.title }}</h4>
+                <p><strong>Дата:</strong> {{ session.date }} | <strong>Время:</strong> {{ session.time }}</p>
+                <p><strong>Тренер:</strong> {{ session.trainer.name }}</p>
+                <p><strong>Максимальное количество участников:</strong> {{ session.max_participants }}</p>
+                <p><strong>Описание:</strong> {{ session.description }}</p>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Нет доступных тренировок.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'appointments:create_training_session' %}" class="btn btn-primary mt-3">Добавить новую тренировку</a>
 {% endblock %}

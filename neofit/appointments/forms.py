@@ -37,7 +37,12 @@ class TrainerForm(forms.ModelForm):
 class TrainingSessionForm(forms.ModelForm):
     class Meta:
         model = TrainingSession
-        fields = ['title', 'description', 'date', 'trainer']
+        fields = ['title', 'description', 'date', 'time', 'duration', 'type', 'max_participants', 'trainer']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'}),
+            'description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
+        }
 
 class AppointmentForm(forms.ModelForm):
     class Meta:

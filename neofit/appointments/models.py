@@ -31,10 +31,18 @@ class Trainer(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 class TrainingSession(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    date = models.DateTimeField()
-    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+    date = models.DateField()
+    time = models.TimeField(default="00:00")
+    duration = models.DurationField(null=True, blank=True)
+    type = models.CharField(max_length=50, choices=[
+        ('cardio', 'Кардио'),
+        ('strength', 'Силовая'),
+        ('flexibility', 'Растяжка')
+    ], default='cardio')
+    max_participants = models.IntegerField(null=True, blank=True)
+    trainer = models.ForeignKey('Trainer', on_delete=models.SET_NULL, null=True)  # Добавляем поле тренера
 
     def __str__(self):
         return self.title

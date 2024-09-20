@@ -1,10 +1,115 @@
 {% extends 'appointments/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
-    <h2>Добавить тренировочную сессию</h2>
+    <h2>Добавить тренировку</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Сохранить</button>
+
+        <!-- Поле для названия тренировки -->
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title|add_class:"form-control" }}
+            {% if form.title.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для описания -->
+        <div class="form-group">
+            {{ form.description.label_tag }}
+            {{ form.description|add_class:"form-control" }}
+            {% if form.description.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.description.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для даты -->
+        <div class="form-group">
+            {{ form.date.label_tag }}
+            {{ form.date|add_class:"form-control datepicker" }}
+            {% if form.date.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.date.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для времени -->
+        <div class="form-group">
+            {{ form.time.label_tag }}
+            {{ form.time|add_class:"form-control timepicker" }}
+            {% if form.time.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.time.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для продолжительности -->
+        <div class="form-group">
+            {{ form.duration.label_tag }}
+            {{ form.duration|add_class:"form-control" }}
+            {% if form.duration.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.duration.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для типа тренировки -->
+        <div class="form-group">
+            {{ form.type.label_tag }}
+            {{ form.type|add_class:"form-control" }}
+            {% if form.type.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.type.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для количества участников -->
+        <div class="form-group">
+            {{ form.max_participants.label_tag }}
+            {{ form.max_participants|add_class:"form-control" }}
+            {% if form.max_participants.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.max_participants.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для тренера -->
+        <div class="form-group">
+            {{ form.trainer.label_tag }}
+            {{ form.trainer|add_class:"form-control" }}
+            {% if form.trainer.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.trainer.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Добавить тренировку</button>
     </form>
 {% endblock %}
