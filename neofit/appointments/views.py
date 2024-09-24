@@ -54,7 +54,11 @@ def create_training_session(request):
         form = TrainingSessionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('training_session_list')  # Перенаправление на страницу со списком тренировок
+            print("Тренировка успешно добавлена")  # Для проверки
+            return redirect('appointments:training_session_list')
+        else:
+            print("Форма неверная:", form.errors)  # Для отладки
     else:
         form = TrainingSessionForm()
+
     return render(request, 'appointments/create_training_session.html', {'form': form})

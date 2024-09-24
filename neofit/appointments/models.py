@@ -34,15 +34,15 @@ class TrainingSession(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     date = models.DateField()
-    time = models.TimeField(default="00:00")
-    duration = models.DurationField(null=True, blank=True)
+    time = models.TimeField(default="00:00")  # Время начала
+    end_time = models.TimeField(default="01:00")  # Время окончания тренировки
     type = models.CharField(max_length=50, choices=[
         ('cardio', 'Кардио'),
         ('strength', 'Силовая'),
         ('flexibility', 'Растяжка')
     ], default='cardio')
     max_participants = models.IntegerField(null=True, blank=True)
-    trainer = models.ForeignKey('Trainer', on_delete=models.SET_NULL, null=True)  # Добавляем поле тренера
+    trainer = models.ForeignKey('Trainer', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.title

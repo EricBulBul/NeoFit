@@ -1,8 +1,6 @@
 from django import forms
 from .models import Client, Trainer, TrainingSession, Appointment
-
-from django import forms
-from .models import Client
+from datetime import timedelta
 
 class ClientForm(forms.ModelForm):
     class Meta:
@@ -34,13 +32,15 @@ class TrainerForm(forms.ModelForm):
             'photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
+
 class TrainingSessionForm(forms.ModelForm):
     class Meta:
         model = TrainingSession
-        fields = ['title', 'description', 'date', 'time', 'duration', 'type', 'max_participants', 'trainer']
+        fields = ['title', 'description', 'date', 'time', 'end_time', 'type', 'max_participants', 'trainer']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'time': forms.TimeInput(attrs={'type': 'time'}),
+            'end_time': forms.TimeInput(attrs={'type': 'time'}),
             'description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
         }
 
