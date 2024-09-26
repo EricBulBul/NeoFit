@@ -1,17 +1,48 @@
 {% extends 'appointments/base.html' %}
-
 {% block content %}
-    <h2>Список доступных тренировок</h2>
+<h2>Список тренировок</h2>
 
-    {% if sessions %}
-        <ul>
-        {% for session in sessions %}
-            <li>{{ session.title }} - {{ session.date }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>Нет доступных тренировок.</p>
-    {% endif %}
+<ul>
+    {% for session in sessions %}
+        <li>
+            <div>
+                <!-- Клик по названию тренировки для раскрытия описания -->
+                <strong onclick="toggleDescription({{ forloop.counter0 }})" style="cursor: pointer;">
+                    {{ session.title }} - {{ session.date }}
+                </strong>
 
-    <a href="{% url 'appointments:create_training_session' %}" class="btn btn-primary">Добавить тренировку</a>
+                <!-- Описание тренировки, по умолчанию скрыто -->
+                <div id="description-{{ forloop.counter0 }}" style="display: none;">
+                    <p><strong>Описание:</strong> {{ session.description }}</p>
+                    <p><strong>Дата:</strong> {{ session.date }}</p>
+                    <p><strong>Время:</strong> {{ session.time }}</p>
+                    <p><strong>Тренер:</strong> {{ session.trainer.first_name }} {{ session.trainer.last_name }}</p>
+
+                    <!-- Дополнительно можно отобразить тренера, если он есть -->
+                    {% if session.trainer.photo %}
+                        <img src="{{ session.trainer.photo.url }}" alt="Фото тренера {{ session.trainer.first_name }}" style="max-width: 200px;">
+                    {% else %}
+                        <p>Фото тренера не загружено</p>
+                    {% endif %}
+                    <p><strong>Макс. участников:</strong> {{ session.max_participants }}</p>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'appointments:create_training_session' %}" class="btn btn-primary">Добавить новую тренировку</a>
+
+<script>
+    // Функция для скрытия/показа описания
+    function toggleDescription(id) {
+        var description = document.getElementById('description-' + id);
+        if (description.style.display === 'none') {
+            description.style.display = 'block';
+        } else {
+            description.style.display = 'none';
+        }
+    }
+</script>
+
 {% endblock %}

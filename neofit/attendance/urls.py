@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
 
-app_name = 'attendance'  # Это пространство имён для приложения
+app_name = 'attendance'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    # Добавьте другие маршруты для вашего приложения здесь
+    path('', views.attendance_list, name='attendance_list'),
+    path('mark/', views.mark_attendance, name='mark_attendance'),
 ]

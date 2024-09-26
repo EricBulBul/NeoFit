@@ -1,0 +1,40 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Список посещаемости</h1>
+
+    <!-- Форма для фильтрации -->
+    <form method="GET" class="form-inline mb-3">
+        <input type="date" name="date" class="form-control mr-2" placeholder="Выберите дату">
+        <input type="text" name="surname" class="form-control mr-2" placeholder="Введите фамилию">
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Клиент</th>
+                <th>Тренировка</th>
+                <th>Дата</th>
+                <th>Присутствие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.client }}</td>
+                <td>{{ attendance.session }}</td>
+                <td>{{ attendance.date }}</td>  <!-- Дата отображается на русском языке, если сайт на русском -->
+                <td>{{ attendance.present|yesno:"Присутствовал,Отсутствовал" }}</td>  <!-- Присутствие в виде "Присутствовал" или "Отсутствовал" -->
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">Записи не найдены</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'attendance:mark_attendance' %}" class="btn btn-primary">Отметить посещаемость</a>
+</div>
+{% endblock %}

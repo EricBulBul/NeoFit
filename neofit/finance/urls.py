@@ -1,9 +1,10 @@
 from django.urls import path
 from . import views
 
-app_name = 'finance'  # Убедитесь, что это пространство имён правильно
+app_name = 'finance'
 
 urlpatterns = [
-    path('', views.index, name='index'),  # Убедитесь, что views.index существует
-    # Добавьте другие маршруты для вашего приложения здесь
+    path('payments/', views.payment_list, name='payment_list'),
+    path('income-report/', views.income_report, name='income_report'),
+    path('add-payment/', views.add_payment, name='add_payment'),
 ]

@@ -1,0 +1,27 @@
+{% extends 'finance/base.html' %}
+{% block content %}
+<h1>Список Платежей</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Клиент</th>
+            <th>Сумма</th>
+            <th>Дата Платежа</th>
+            <th>Метод</th>
+            <th>Категория</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment in payments %}
+        <tr>
+            <td>{{ payment.client }}</td>
+            <td>{{ payment.amount }}</td>
+            <td>{{ payment.payment_date }}</td>
+            <td>{{ payment.method }}</td>
+            <td>{{ payment.category }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'finance:add_payment' %}" class="btn btn-primary">Добавить платеж</a>
+{% endblock %}
