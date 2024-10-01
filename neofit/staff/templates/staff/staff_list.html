@@ -1,0 +1,37 @@
+{% extends 'staff/base.html' %}
+
+{% block content %}
+    <h2>Список персонала</h2>
+
+    <ul>
+        {% for staff_member in staff_members %}
+            <li>
+                <div>
+                    <strong onclick="toggleDescription({{ forloop.counter0 }})" style="cursor: pointer;">
+                        {{ staff_member.first_name }} {{ staff_member.last_name }} {{ staff_member.middle_name }}
+                    </strong>
+
+                    <div id="description-{{ forloop.counter0 }}" style="display: none;">
+                        <p>Email: {{ staff_member.email }}</p>
+                        <p>Телефон: {{ staff_member.phone_number }}</p>
+                        <p>Должность: {{ staff_member.position }}</p>
+                        <p>Зарплата: {{ staff_member.salary }}</p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'staff:create_staff_member' %}" class="btn btn-primary">Добавить нового сотрудника</a>
+
+    <script>
+        function toggleDescription(id) {
+            var description = document.getElementById('description-' + id);
+            if (description.style.display === 'none') {
+                description.style.display = 'block';
+            } else {
+                description.style.display = 'none';
+            }
+        }
+    </script>
+{% endblock %}

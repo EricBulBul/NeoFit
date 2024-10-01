@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'users/base.html' %}
+
+{% block content %}
+<h2>Список клиентов</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Email</th>
+            <th>Номер телефона</th>
+            <th>Дата рождения</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.last_name }}</td>
+            <td>{{ client.first_name }}</td>
+            <td>{{ client.middle_name }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.phone_number }}</td>
+            <td>{{ client.birthdate }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">Клиенты не найдены</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'users:add_client' %}" class="btn btn-primary">Добавить клиента</a>
+{% endblock %}

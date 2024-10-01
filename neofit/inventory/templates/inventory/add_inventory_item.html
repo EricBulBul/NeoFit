@@ -1,0 +1,24 @@
+{% extends 'inventory/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <h2>Добавить инвентарь</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Проходим по всем полям формы и добавляем класс form-control -->
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field|add_class:"form-control" }}
+                <div class="text-muted">{{ field.help_text }}</div>
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+
+    <a href="{% url 'inventory:inventory_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+{% endblock %}

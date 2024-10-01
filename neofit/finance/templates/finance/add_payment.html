@@ -1,9 +1,41 @@
 {% extends 'finance/base.html' %}
+{% load widget_tweaks %}
+
 {% block content %}
-<h1>Добавить Платеж</h1>
-<form method="post">
+<form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Сохранить</button>
+
+    <!-- Поле для выбора клиента с классом form-control -->
+    <div class="form-group">
+        <label for="{{ form.client.id_for_label }}">Клиент</label>
+        {{ form.client|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для суммы платежа с классом form-control -->
+    <div class="form-group">
+        <label for="{{ form.amount.id_for_label }}">Сумма</label>
+        {{ form.amount|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для даты платежа с классом form-control -->
+    <div class="form-group">
+        <label for="{{ form.payment_date.id_for_label }}">Дата платежа</label>
+        {{ form.payment_date|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для метода платежа с классом form-control -->
+    <div class="form-group">
+        <label for="{{ form.method.id_for_label }}">Метод</label>
+        {{ form.method|add_class:"form-control" }}
+    </div>
+
+    <!-- Поле для категории платежа с классом form-control -->
+    <div class="form-group">
+        <label for="{{ form.category.id_for_label }}">Категория</label>
+        {{ form.category|add_class:"form-control" }}
+    </div>
+
+    <!-- Кнопка отправки с классом btn btn-primary -->
+    <button type="submit" class="btn btn-primary">Добавить платеж</button>
 </form>
 {% endblock %}

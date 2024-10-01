@@ -1,27 +1,44 @@
 {% extends 'finance/base.html' %}
+
 {% block content %}
-<h1>Список Платежей</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Клиент</th>
-            <th>Сумма</th>
-            <th>Дата Платежа</th>
-            <th>Метод</th>
-            <th>Категория</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for payment in payments %}
-        <tr>
-            <td>{{ payment.client }}</td>
-            <td>{{ payment.amount }}</td>
-            <td>{{ payment.payment_date }}</td>
-            <td>{{ payment.method }}</td>
-            <td>{{ payment.category }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<a href="{% url 'finance:add_payment' %}" class="btn btn-primary">Добавить платеж</a>
+<div class="container">
+    <h1>Список Платежей</h1>
+
+    <!-- Форма для фильтрации -->
+    <form method="GET" class="form-inline mb-3">
+        <input type="date" name="date" class="form-control mr-2" placeholder="Выберите дату">
+        <input type="text" name="surname" class="form-control mr-2" placeholder="Введите фамилию">
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Клиент</th>
+                <th>Сумма</th>
+                <th>Дата Платежа</th>
+                <th>Метод</th>
+                <th>Категория</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.client }}</td>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.payment_date }}</td>
+                <td>{{ payment.method }}</td>
+                <td>{{ payment.category }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">Записи не найдены</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'finance:add_payment' %}" class="btn btn-primary">Добавить платеж</a>
+</div>
 {% endblock %}
+

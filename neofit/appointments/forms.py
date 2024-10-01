@@ -6,6 +6,14 @@ class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ['last_name', 'first_name', 'middle_name', 'email', 'phone_number', 'birthdate']
+        labels = {
+            'last_name': 'Фамилия',
+            'first_name': 'Имя',
+            'middle_name': 'Отчество (если есть)',
+            'email': 'Электронная почта',
+            'phone_number': 'Номер телефона',
+            'birthdate': 'Дата рождения',
+        }
         widgets = {
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Фамилия'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя'}),
@@ -16,10 +24,22 @@ class ClientForm(forms.ModelForm):
         }
 
 
+
 class TrainerForm(forms.ModelForm):
     class Meta:
         model = Trainer
         fields = ['last_name', 'first_name', 'middle_name', 'email', 'phone_number', 'birthdate', 'specialty', 'gender', 'photo']
+        labels = {
+            'last_name': 'Фамилия',
+            'first_name': 'Имя',
+            'middle_name': 'Отчество (если есть)',
+            'email': 'Электронная почта',
+            'phone_number': 'Номер телефона',
+            'birthdate': 'Дата рождения',
+            'specialty': 'Специальность',
+            'gender': 'Пол',
+            'photo': 'Фото',
+        }
         widgets = {
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -33,10 +53,21 @@ class TrainerForm(forms.ModelForm):
         }
 
 
+
 class TrainingSessionForm(forms.ModelForm):
     class Meta:
         model = TrainingSession
         fields = ['title', 'description', 'date', 'time', 'end_time', 'type', 'max_participants', 'trainer']
+        labels = {
+            'title': 'Название',
+            'description': 'Описание',
+            'date': 'Дата',
+            'time': 'Время начала',
+            'end_time': 'Время окончания',
+            'type': 'Тип',
+            'max_participants': 'Макс. количество участников',
+            'trainer': 'Тренер',
+        }
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'time': forms.TimeInput(attrs={'type': 'time'}),
@@ -48,3 +79,8 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = ['client', 'session']
+        labels = {
+            'client': 'Клиент',
+            'session': 'Тренировка',
+        }
+

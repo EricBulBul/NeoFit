@@ -1,0 +1,32 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+    <h2>Список инвентаря</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Количество</th>
+                <th>Состояние</th>
+                <th>Дата покупки</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.condition }}</td>
+                    <td>{{ item.purchase_date }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Инвентарь не найден.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'inventory:add_inventory_item' %}" class="btn btn-primary">Добавить новый инвентарь</a>
+{% endblock %}

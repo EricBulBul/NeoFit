@@ -10,20 +10,17 @@
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать на сайт фитнес-центра</h1>
+        <h1>Информационная система "NeoFit"</h1>
         <nav>
             <!-- Ссылки на другие разделы сайта -->
             <a href="{% url 'appointments:appointment_list' %}">Записи на тренировки</a>
             <a href="{% url 'attendance:attendance_list' %}">Посещаемость</a>
             <a href="{% url 'finance:payment_list' %}">Финансы</a>
-            <a href="{% url 'inventory:index' %}">Инвентаризация</a>
-            <a href="{% url 'staff:index' %}">Персонал</a>
-            <a href="{% url 'users:index' %}">Пользователи</a>
+            <a href="{% url 'inventory:inventory_list' %}">Инвентаризация</a>
+            <a href="{% url 'staff:staff_list' %}">Персонал</a>
+            <a href="{% url 'users:client_list' %}">Пользователи</a>
         </nav>
     </header>
-    <main>
-        <h2>Содержание главной страницы</h2>
-    </main>
     <footer>
         <p>&copy; 2024 Фитнес-центр. Все права защищены.</p>
     </footer>

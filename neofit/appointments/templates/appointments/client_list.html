@@ -1,11 +1,40 @@
 {% extends 'appointments/base.html' %}
 
 {% block content %}
-    <h2>Список клиентов</h2>
-    <ul>
-        {% for client in clients %}
-            <li>{{ client.last_name }} {{ client.first_name }} - {{ client.email }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'appointments:create_client' %}" class="btn btn-primary">Добавить нового клиента</a>
+<h2>Список клиентов</h2>
+
+<ul>
+    {% for client in clients %}
+        <li>
+            <div>
+                <!-- Клик по имени клиента для раскрытия описания -->
+                <strong onclick="toggleDescription({{ forloop.counter0 }})" style="cursor: pointer;">
+                    {{ client.first_name }} {{ client.last_name }} - {{ client.email }}
+                </strong>
+
+                <!-- Описание клиента, по умолчанию скрыто -->
+                <div id="description-{{ forloop.counter0 }}" style="display: none;">
+                    <p>Дата рождения: {{ client.birthdate }}</p>
+                    <p>Телефон: {{ client.phone_number }}</p>
+                    <p>Email: {{ client.email }}</p>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'appointments:create_client' %}" class="btn btn-primary">Добавить нового клиента</a>
+
+<script>
+    // Функция для скрытия/показа описания
+    function toggleDescription(id) {
+        var description = document.getElementById('description-' + id);
+        if (description.style.display === 'none') {
+            description.style.display = 'block';
+        } else {
+            description.style.display = 'none';
+        }
+    }
+</script>
+
 {% endblock %}

@@ -1,9 +1,9 @@
 from django.urls import path
-from . import views
+from .views import client_list, add_client
 
-app_name = 'users'  # Это пространство имён для приложения
+app_name = 'users'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    # Добавьте другие маршруты для вашего приложения здесь
+    path('clients/', client_list, name='client_list'),
+    path('clients/add/', add_client, name='add_client'),
 ]

@@ -1,0 +1,52 @@
+{% extends 'staff/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <h2>Добавить сотрудника</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Поле для имени -->
+        <div class="form-group">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+        </div>
+
+        <!-- Поле для фамилии -->
+        <div class="form-group">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+        </div>
+        <!-- Поле для отчества -->
+        <div class="form-group">
+            {{ form.middle_name.label_tag }}
+            {{ form.middle_name|add_class:"form-control" }}
+        </div>
+        <!-- Поле для email -->
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+
+        <!-- Поле для телефона -->
+        <div class="form-group">
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+        </div>
+
+        <!-- Поле для должности -->
+        <div class="form-group">
+            {{ form.position.label_tag }}
+            {{ form.position }}
+        </div>
+
+        <!-- Поле для зарплаты -->
+        <div class="form-group">
+            {{ form.salary.label_tag }}
+            {{ form.salary }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Добавить сотрудника</button>
+    </form>
+
+{% endblock %}
